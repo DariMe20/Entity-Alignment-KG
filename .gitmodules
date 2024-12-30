@@ -1,0 +1,3 @@
+[submodule "EAkit"]
+	path = EAkit
+	url = https://github.com/THU-KEG/EAkit.git
