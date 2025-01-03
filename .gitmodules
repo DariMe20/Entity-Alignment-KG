@@ -1,3 +1,9 @@
 [submodule "EAkit"]
 	path = EAkit
 	url = https://github.com/THU-KEG/EAkit.git
+[submodule "JAPE"]
+	path = JAPE
+	url = https://github.com/nju-websoft/JAPE.git
+[submodule "OpenEA"]
+	path = OpenEA
+	url = https://github.com/nju-websoft/OpenEA.git
