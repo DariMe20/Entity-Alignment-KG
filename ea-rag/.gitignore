@@ -7,3 +7,6 @@ env/
 # Ignore environment variable files
 .env
 .env.*
+
+# Ignore the fr_en folder and its contents
+fr_en/

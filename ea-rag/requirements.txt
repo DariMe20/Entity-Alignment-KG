@@ -23,12 +23,14 @@ httpx-sse==0.4.0
 idna==3.10
 ipykernel==6.29.5
 ipython==8.31.0
+ipywidgets==8.1.5
 jedi==0.19.2
 jiter==0.8.2
 jsonpatch==1.33
 jsonpointer==3.0.0
 jupyter_client==8.6.3
 jupyter_core==5.7.2
+jupyterlab_widgets==3.0.13
 langchain==0.3.13
 langchain-community==0.3.13
 langchain-core==0.3.29
@@ -82,4 +84,5 @@ typing-inspect==0.9.0
 typing_extensions==4.12.2
 urllib3==2.3.0
 wcwidth==0.2.13
+widgetsnbextension==4.0.13
 yarl==1.18.3
