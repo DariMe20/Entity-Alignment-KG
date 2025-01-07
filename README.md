@@ -1,15 +1,18 @@
-# Entity-Alignment-KG
+# Entity Alignment Using RAG (EA_RAG)
 
 ## Overview
 
-This repository integrates two submodules for entity alignment:
+This repository introduces **EA_RAG**, a novel framework for entity alignment in knowledge graphs (KGs) using **Retrieval-Augmented Generation (RAG)** with Large Language Models (LLMs). The framework dynamically integrates retrieval mechanisms with generative models to align entities across multilingual and multi-modal KGs. 
 
-1. **[EAkit](https://github.com/THU-KEG/EAkit)**: A PyTorch-based toolkit for embedding-based entity alignment.
-2. **[OpenEA](https://github.com/nju-websoft/OpenEA)**: A TensorFlow-based framework for embedding-based entity
-   alignment, including multiple models and benchmark datasets.
+The primary contribution of this project is the implementation of RAG-based alignment methods, evaluated against traditional embedding-based approaches provided by the **EAkit** framework.
 
-This README provides detailed instructions on setting up the local environment, configuring the datasets, and running
-both projects.
+## Features
+
+- **RAG-Based Alignment**: A novel entity alignment approach leveraging generative capabilities of LLMs.
+- **Dynamic Retrieval**: Incorporates external knowledge during the alignment process for improved accuracy.
+- **Evaluation Using EAkit**: Benchmarked against state-of-the-art embedding-based methods such as GCN-Align, MTransE, and BootEA.
+- **Cross-Lingual Matching**: Optimized for datasets like DBP15K, supporting multilingual knowledge graphs.
+- **Scalable Architecture**: Uses Pinecone for efficient vector storage and retrieval.
 
 ---
 
@@ -17,34 +20,94 @@ both projects.
 
 ### General Requirements
 
-- **Python**: 3.7 (Recommended)
-- **Conda**: Miniconda or Anaconda installed ([Download Miniconda](https://docs.conda.io/en/latest/miniconda.html))
+- **Python**: 3.11
+- **Conda**: Miniconda or Anaconda ([Download Miniconda](https://docs.conda.io/en/latest/miniconda.html))
 - **Git**: Installed and configured ([Download Git](https://git-scm.com/downloads))
-- **Ubuntu WSL**: Windows Subsystem for Linux (if using
-  Ubuntu) ([Install WSL](https://docs.microsoft.com/en-us/windows/wsl/install))
-- **Pycharm Community Edition**: Optional but
-  useful – [Pycharm Download](https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC)
+- **Pinecone**: API for vector embedding management ([Pinecone Documentation](https://docs.pinecone.io/))
 
 ---
 
-### Cloning the Repository
+## Getting Started
 
-Clone this repository with its submodules:
+### Clone the Repository
+
+Clone the repository with submodules:
 
 ```bash
-git clone --recurse-submodules https://github.com/DariMe20/Entity-Alignment-KG.git
-cd Entity-Alignment-KG
+git clone --recurse-submodules https://github.com/your-repo/EA_RAG.git
+cd EA_RAG
 ```
 
-If you forgot to clone with submodules, initialize them manually:
+### Create a Conda Environment
+
+1. Create and activate the environment:
+   ```bash
+   conda create --name ea_rag python=3.11 -y
+   conda activate ea_rag
+   ```
+
+2. Verify the Python version:
+   ```bash
+   python --version  # Should output 3.11.x
+   ```
+
+### Install Dependencies
+
+Install required packages using pip:
 
 ```bash
-git submodule update --init --recursive
+pip install -r requirements.txt
+```
+
+### Configure API Keys
+
+Create a `.env` file with the following details:
+
+```
+OPENAI_API_KEY=your_openai_key
+PINECONE_API_KEY=your_pinecone_key
 ```
 
 ---
 
-## Environment Setup
+## Dataset Setup
+
+### Download DBP15K Dataset
+
+1. Download the DBP15K dataset from [Hugging Face](https://huggingface.co/datasets/HackCz/DBP15K_raw/blob/main/DBP_raw.zip).
+2. Extract and rename the folder to `fr_en` in the repository directory.
+
+
+## Using EA_RAG
+
+The implementation and usage of the EA_RAG framework are detailed in the Jupyter Notebook `ea-rag/main.ipynb`. Follow the instructions in the notebook to:
+
+- Embed knowledge graph entities using LLM-based text embedding models.
+- Store and retrieve embeddings with Pinecone.
+- Query and align entities using a combination of retrieval mechanisms and generative models.
+
+## EA_RAG Results
+Experiments were conducted on subsets of the DBP15K dataset (English-French), comparing the RAG-based alignment against ground truth. Below are the results:
+
+| Dataset Size | Hits@1 | Processing Time |
+|--------------|--------|-----------------|
+| 150 Entities | 72.4%  | ~5 minutes      |
+| 1,500 Entities | 68.1%  | ~15 minutes     |
+| 15,000 Entities | 64.6%  | ~60 minutes     |
+
+## EAkit Results
+The embedding-based methods implemented in EAkit were evaluated on the same DBP15K (English-French) dataset, focusing on Hits@1 accuracy. Below are the results for each method:
+
+| Method     | Hits@1 | Processing Time |
+|------------|--------|-----------------|
+| BootEA     | 51.5%  |~12 hours      |
+| GCN-Align  | 43.0%  |~25 minutes     |
+| MTransE    | 40.7%  |~11 minutes     |
+
+
+## Running EAkit
+
+To benchmark EA_RAG, we evaluated it against embedding-based methods provided by **EAkit**. Note that EAkit requires a separate environment setup:
 
 ### Environment for EAkit
 
@@ -60,113 +123,26 @@ git submodule update --init --recursive
    pip install numpy scipy scikit-learn tensorboard
    ```
 
-### Environment for OpenEA
-
-1. Create a Conda environment for OpenEA:
-   ```bash
-   conda create --name openea python=3.7 -y
-   conda activate openea
-   ```
-2. Install dependencies:
-   ```bash
-   pip install tensorflow==1.12 scipy numpy pandas scikit-learn gensim==3.8.3 protobuf==3.20.3
-   ```
-3. Install graph-tool (if using Ubuntu WSL):
-   ```bash
-   sudo apt update
-   sudo apt install -y python3-graph-tool
-   ```
-4. Install OpenEA in editable mode:
-   ```bash
-   cd openea
-   python -m pip install -e .
-   cd ..
-   ```
-
----
-
-## Dataset Setup
-
-### EAkit Dataset
-
-1. Navigate to the `EAkit` directory:
-   ```bash
-   cd EAkit
-   ```
-2. Create a `data` folder:
-   ```bash
-   mkdir data
-   ```
-3. Clone the JAPE submodule for dataset preparation (if not already cloned):
-   ```bash
-   git submodule add https://github.com/nju-websoft/JAPE.git JAPE
-   ```
-4. Extract the dataset into the `data` folder:
-   ```bash
-   unzip data.zip -d data/
-   ```
-5. Verify the dataset structure:
-   ```
-   EAkit/data/DBP15K/
-   ├── zh_en/
-   ├── ja_en/
-   └── fr_en/
-   ```
-
-### OpenEA Dataset
-
-1. Navigate to the `OpenEA` directory:
-   ```bash
-   cd openea
-   ```
-2. Create a `data` folder:
-   ```bash
-   mkdir data
-   ```
-3. Download the OpenEA v2.0 dataset
-   from [Figshare](https://figshare.com/articles/dataset/OpenEA_dataset_v1_1/19258760/3?file=34234391).
-4. Extract the dataset into the `data` folder:
-   ```bash
-   unzip downloaded_dataset.zip -d data/
-   ```
-5. Verify the dataset structure:
-   ```
-   OpenEA/data/EN_FR_15K_V1/
-   ├── attr_triples_1
-   ├── attr_triples_2
-   ├── rel_triples_1
-   ├── rel_triples_2
-   ├── ent_links
-   ├── 721_5fold/
-   │   ├── 1/
-   │   │   ├── test_links
-   │   │   ├── train_links
-   │   │   └── valid_links
-   ```
-6. Return to the root directory:
-   ```bash
-   cd ..
-   ```
-
----
-
-## Running EAkit
+### Running EAkit Methods
 
 1. Activate the EAkit environment:
    ```bash
    conda activate eakit
    ```
-2. Navigate to the `examples` folder:
+
+2. Navigate to the examples folder:
    ```bash
    cd EAkit/examples
    ```
-3. Run a predefined script. For example, to run **GCN-Align**:
+
+3. Run a predefined alignment script (e.g., GCN-Align):
    ```bash
    ./run_GCN-Align.sh
    ```
-4. Alternatively, execute the Python command directly:
+
+4. Alternatively, execute directly with custom parameters:
    ```bash
-   python ../run.py --log gcnalign                     --data_dir "../data/DBP15K/zh_en"                     --rate 0.3                     --epoch 1000                     --check 10                     --update 10                     --train_batch_size -1                     --encoder "GCN-Align"                     --hiddens "100,100,100"                     --decoder "Align"                     --sampling "N"                     --k "25"                     --margin "1"                     --alpha "1"                     --feat_drop 0.0                     --lr 0.005                     --train_dist "euclidean"                     --test_dist "euclidean"
+   python ../run.py --data_dir "../data/DBP15K/zh_en" --encoder "GCN-Align"
    ```
 5. Monitor metrics using TensorBoard:
    ```bash
@@ -176,60 +152,20 @@ git submodule update --init --recursive
 
 ---
 
-## Running OpenEA
-
-1. Activate the OpenEA environment:
-   ```bash
-   conda activate openea
-   ```
-2. Navigate to the `run` directory:
-   ```bash
-   cd OpenEA/run
-   ```
-3. Run a predefined script. For example, to run BootEA:
-   ```bash
-   python main_from_args.py ./args/bootea_args_15K.json D_W_15K_V1 721_5fold/1/
-   ```
-4. Results (Hits@1, Hits@10, MR, MRR) will be displayed in the terminal.
-
----
-
-## Common Issues
-
-### Conda Environment Issues
-
-- Ensure Conda is added to your PATH. Run:
-  ```bash
-  conda init
-  ```
-  Then restart your terminal.
-
-### Dataset Not Found
-
-- Ensure datasets are downloaded and extracted in the correct structure.
-
-### Dependency Conflicts
-
-- Update `pip`, `setuptools`, and `wheel`:
-  ```bash
-  pip install --upgrade pip setuptools wheel
-  ```
-
----
 
 ## License
 
-This repository is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ---
 
 ## Citation
 
-If you use this repository, please cite the original papers for **EAkit** and **OpenEA**:
+If you use this framework, please cite the relevant works:
 
 - **EAkit**:
   ```plaintext
-  @article{eakit,
+  @article{zeng2021comprehensive,
     title={A comprehensive survey of entity alignment for knowledge graphs},
     author={Zeng, Kaisheng and Li, Chengjiang and Hou, Lei and Li, Juanzi and Feng, Ling},
     journal={AI Open},
@@ -240,16 +176,3 @@ If you use this repository, please cite the original papers for **EAkit** and **
   }
   ```
 
-- **OpenEA**:
-  ```plaintext
-  @article{OpenEA,
-    author={Zequn Sun and Qingheng Zhang and Wei Hu and Chengming Wang and Muhao Chen and Farahnaz Akrami and Chengkai Li},
-    title={A Benchmarking Study of Embedding-based Entity Alignment for Knowledge Graphs},
-    journal={Proceedings of the VLDB Endowment},
-    volume={13},
-    number={11},
-    pages={2326--2340},
-    year={2020},
-    url={http://www.vldb.org/pvldb/vol13/p2326-sun.pdf}
-  }
-  ```
