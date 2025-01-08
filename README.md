@@ -100,9 +100,9 @@ The embedding-based methods implemented in EAkit were evaluated on the same DBP1
 
 | Method     | Hits@1 | Processing Time |
 |------------|--------|-----------------|
-| BootEA     | 51.5%  |~12 hours      |
-| GCN-Align  | 43.0%  |~25 minutes     |
-| MTransE    | 40.7%  |~11 minutes     |
+| BootEA     | 0.5148  |~12 hours      |
+| GCN-Align  | 0.4303  |~25 minutes     |
+| MTransE    | 0.4073  |~11 minutes     |
 
 
 ## Running EAkit
