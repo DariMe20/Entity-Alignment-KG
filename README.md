@@ -34,11 +34,11 @@ The primary contribution of this project is the implementation of RAG-based alig
 Clone the repository with submodules:
 
 ```bash
-git clone --recurse-submodules https://github.com/your-repo/EA_RAG.git
-cd EA_RAG
+git clone --recurse-submodules https://github.com/DariMe20/Entity-Alignment-KG
+cd Entity-Alignment-KG
 ```
 
-### Create a Conda Environment
+### Create a Conda Environment for EA_RAG
 
 1. Create and activate the environment:
    ```bash
