@@ -64,7 +64,11 @@ pip install -r requirements.txt
 Create a `.env` file with the following details:
 
 ```
-OPENAI_API_KEY=your_openai_key
+OPENAI_API_KEY01=your_openai_key
+OPENAI_API_KEY02=your_openai_key
+OPENAI_API_KEY03=your_openai_key
+OPENAI_API_KEY04=your_openai_key
+OPENAI_API_KEY05=your_openai_key
 PINECONE_API_KEY=your_pinecone_key
 ```
 
