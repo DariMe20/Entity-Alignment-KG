@@ -89,11 +89,11 @@ The implementation and usage of the EA_RAG framework are detailed in the Jupyter
 ## EA_RAG Results
 Experiments were conducted on subsets of the DBP15K dataset (English-French), comparing the RAG-based alignment against ground truth. Below are the results:
 
-| Dataset Size | Hits@1 | Processing Time |
-|--------------|--------|-----------------|
-| 150 Entities | 72.4%  | ~5 minutes      |
-| 1,500 Entities | 68.1%  | ~15 minutes     |
-| 15,000 Entities | 64.6%  | ~60 minutes     |
+| Dataset Size      | Hits@1 | Processing Time         |
+|-------------------|--------|-------------------------|
+| 150 Entities      | 0.6667 | ~30 seconds           |
+| 1,500 Entities    | 0.6421 | ~7 minutes            |
+| 15,000 Entities   | 0.6465 | ~61 minutes           |
 
 ## EAkit Results
 The embedding-based methods implemented in EAkit were evaluated on the same DBP15K (English-French) dataset, focusing on Hits@1 accuracy. Below are the results for each method:
