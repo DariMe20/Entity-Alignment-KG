@@ -169,14 +169,19 @@ If you use this framework, please cite the relevant works:
 
 - **EAkit**:
   ```plaintext
-  @article{zeng2021comprehensive,
-    title={A comprehensive survey of entity alignment for knowledge graphs},
-    author={Zeng, Kaisheng and Li, Chengjiang and Hou, Lei and Li, Juanzi and Feng, Ling},
-    journal={AI Open},
-    volume={2},
-    pages={1--13},
-    year={2021},
-    publisher={Elsevier}
-  }
+   @inproceedings{bara2025retrieval,
+     author    = {Davide Mario Ricardo Bara and
+                  Daria Maria Meseșan and
+                  Gheorghe Cosmin Silaghi},
+     title     = {Retrieval-Augmented Generation for Entity Alignment in Knowledge Graphs: an Incipient Experiment},
+     booktitle = {Proceedings of the Workshop on Knowledge Graphs for Semantics-driven Systems Engineering (KG-SysEng 2025), 
+                  held in conjunction with the 37th International Conference on Advanced Information Systems Engineering (CAiSE 2025)},
+     year      = {2025},
+     address   = {Vienna, Austria},
+     publisher = {Springer},
+     series    = {Lecture Notes in Business Information Processing},
+     note      = {To appear}
+   }
+
   ```
 
