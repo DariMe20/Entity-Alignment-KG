@@ -175,7 +175,6 @@ If you use this framework, please cite the relevant works:
      title     = {Retrieval-Augmented Generation for Entity Alignment in Knowledge Graphs: an Incipient Experiment},
      booktitle = {Advanced Information Systems Engineering Workshops, CAiSE 2025 International Workshops},
      year      = {2025},
-     address   = {Vienna, Austria},
      publisher = {Springer},
      series    = {Lecture Notes in Computer Science},
      note      = {To appear}
