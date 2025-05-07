@@ -167,19 +167,17 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 If you use this framework, please cite the relevant works:
 
-- **EAkit**:
   ```plaintext
    @inproceedings{bara2025retrieval,
      author    = {Davide Mario Ricardo Bara and
                   Daria Maria Meseșan and
                   Gheorghe Cosmin Silaghi},
      title     = {Retrieval-Augmented Generation for Entity Alignment in Knowledge Graphs: an Incipient Experiment},
-     booktitle = {Proceedings of the Workshop on Knowledge Graphs for Semantics-driven Systems Engineering (KG-SysEng 2025), 
-                  held in conjunction with the 37th International Conference on Advanced Information Systems Engineering (CAiSE 2025)},
+     booktitle = {Advanced Information Systems Engineering Workshops, CAiSE 2025 International Workshops},
      year      = {2025},
      address   = {Vienna, Austria},
      publisher = {Springer},
-     series    = {Lecture Notes in Business Information Processing},
+     series    = {Lecture Notes in Computer Science},
      note      = {To appear}
    }
 
